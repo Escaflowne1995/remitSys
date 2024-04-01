@@ -5,6 +5,10 @@
  */
 package registrattion;
 
+import config.dbConnector;
+import javax.swing.JOptionPane;
+import log.login_form;
+
 /**
  *
  * @author SCC
@@ -27,21 +31,139 @@ public class registrationForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        lname = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        r_username = new javax.swing.JTextField();
+        r_password = new javax.swing.JTextField();
+        fname = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        r_userT = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        register = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Email:");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(70, 210, 70, 30);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Username:");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(70, 250, 70, 30);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Password:");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(70, 290, 70, 30);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setText("User Type:");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(70, 330, 70, 30);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setText("Last Name:");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(70, 170, 90, 20);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setText("First Name:");
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(70, 130, 80, 20);
+        jPanel1.add(lname);
+        lname.setBounds(150, 170, 200, 30);
+        jPanel1.add(email);
+        email.setBounds(150, 210, 200, 30);
+        jPanel1.add(r_username);
+        r_username.setBounds(150, 250, 200, 30);
+        jPanel1.add(r_password);
+        r_password.setBounds(150, 290, 200, 30);
+        jPanel1.add(fname);
+        fname.setBounds(150, 130, 200, 30);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel5.setText("Registration Form");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(40, 40, 350, 44);
+
+        r_userT.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        r_userT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "User" }));
+        jPanel1.add(r_userT);
+        r_userT.setBounds(150, 330, 200, 30);
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setText("Cancel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(150, 380, 90, 23);
+
+        register.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        register.setText("Register");
+        register.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerActionPerformed(evt);
+            }
+        });
+        jPanel1.add(register);
+        register.setBounds(260, 380, 90, 23);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/business (2).jpg"))); // NOI18N
+        jLabel8.setText("jLabel5");
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(0, 30, 410, 350);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
+        dbConnector dbc = new dbConnector();
+        
+         if(dbc.insertData("INSERT INTO `tbl_users` (u_fname, u_lname, u_email, u_username, u_password, u_account, u_status) VALUES ('"+fname.getText()+"', '"+lname.getText()+"', '"+email.getText()+"', '"+r_username.getText()+"', '"+r_password.getText()+"', '"+r_userT.getSelectedItem()+"', 'Pending')")){                                        
+                JOptionPane.showMessageDialog(null, "Inserted Successfully!");
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Connection Error!");
+            }
+        
+    }//GEN-LAST:event_registerActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        login_form ads = new login_form();
+        ads.setVisible(true);
+        ads.pack();
+        ads.setLocationRelativeTo(null);
+        this.dispose();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +201,22 @@ public class registrationForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField email;
+    private javax.swing.JTextField fname;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField lname;
+    private javax.swing.JTextField r_password;
+    private javax.swing.JComboBox<String> r_userT;
+    private javax.swing.JTextField r_username;
+    private javax.swing.JButton register;
     // End of variables declaration//GEN-END:variables
 }
