@@ -16,10 +16,11 @@ public class login_form extends javax.swing.JFrame {
     public login_form() {
         initComponents();
     }
+    static String name_f,name_l;
     public static boolean loginAcc(String j_username, String j_password){
         dbConnector connector = new dbConnector();
         try{
-            String query = "SELECT * FROM `tbl_remit`  WHERE u_username = '" + j_username + "' AND u_password = '" + j_password + "'AND u_status = 'Active'";
+            String query = "SELECT * FROM `tbl_users`  WHERE u_username = '" + j_username + "' AND u_password = '" + j_password + "'AND u_status = 'Active'";
             ResultSet resultSet = connector.getData(query);
             return resultSet.next();
         }catch (SQLException ex) {
@@ -30,9 +31,11 @@ public class login_form extends javax.swing.JFrame {
     public static String getRole(String j_username, String j_password){
         dbConnector connect = new dbConnector();
         try{
-            String sql = "SELECT u_userT FROM `tbl_remit` WHERE u_username = '"+j_username+"'AND u_password = '"+j_password+"'";
+            String sql = "SELECT u_userT FROM `tbl_users` WHERE u_username = '"+j_username+"'AND u_password = '"+j_password+"'";
             ResultSet rs= connect.getData(sql);
             if(rs.next()){
+                name_f = rs.getString("u_fname");
+                name_l= rs.getString("u_lname");
                 return rs.getString("u_userT");
             }else{
                 return null;

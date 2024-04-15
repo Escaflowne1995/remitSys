@@ -54,7 +54,7 @@ public class adminDashb extends javax.swing.JFrame {
         j_logout.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         j_users.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        j_users.setText("User");
+        j_users.setText("Users");
         j_users.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         j_users.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

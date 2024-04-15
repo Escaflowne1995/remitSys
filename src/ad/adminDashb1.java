@@ -27,8 +27,8 @@ public class adminDashb1 extends javax.swing.JFrame {
         public void displayData(){
         try{
             dbConnector dbc = new dbConnector();
-            ResultSet rs = dbc.getData("SELECT * FROM `tbl_remit`");
-            usersTable.setModel(DbUtils.resultSetToTableModel(rs));
+            ResultSet rs = dbc.getData("SELECT * FROM `tbl_users`");
+            userTable.setModel(DbUtils.resultSetToTableModel(rs));
              rs.close();
         }catch(SQLException ex){
             System.out.println("Errors: "+ex.getMessage());
@@ -50,7 +50,7 @@ public class adminDashb1 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         j_logout = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        usersTable = new javax.swing.JTable();
+        userTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,7 +60,7 @@ public class adminDashb1 extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Admin Dashboard");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(220, 10, 220, 60);
+        jLabel1.setBounds(300, 10, 220, 60);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-profile-picture-80.png"))); // NOI18N
 
@@ -92,21 +92,24 @@ public class adminDashb1 extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 120, 480);
 
-        usersTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                usersTableMouseClicked(evt);
+        userTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
             }
-        });
-        jScrollPane1.setViewportView(usersTable);
+        ));
+        jScrollPane1.setViewportView(userTable);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(120, 80, 452, 320);
+        jScrollPane1.setBounds(130, 70, 540, 402);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,10 +119,6 @@ public class adminDashb1 extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void usersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersTableMouseClicked
-        
-    }//GEN-LAST:event_usersTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -166,6 +165,6 @@ public class adminDashb1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton j_logout;
-    private javax.swing.JTable usersTable;
+    private javax.swing.JTable userTable;
     // End of variables declaration//GEN-END:variables
 }
