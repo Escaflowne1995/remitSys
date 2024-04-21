@@ -20,7 +20,7 @@ public class login_form extends javax.swing.JFrame {
     public static boolean loginAcc(String j_username, String j_password){
         dbConnector connector = new dbConnector();
         try{
-            String query = "SELECT * FROM `tbl_users`  WHERE u_username = '" + j_username + "' AND u_password = '" + j_password + "'AND u_status = 'Active'";
+            String query = "SELECT * FROM `remit_sys`  WHERE u_username = '" + j_username + "' AND u_password = '" + j_password + "'AND u_status = 'Active'";
             ResultSet resultSet = connector.getData(query);
             return resultSet.next();
         }catch (SQLException ex) {
@@ -31,7 +31,7 @@ public class login_form extends javax.swing.JFrame {
     public static String getRole(String j_username, String j_password){
         dbConnector connect = new dbConnector();
         try{
-            String sql = "SELECT u_userT FROM `tbl_users` WHERE u_username = '"+j_username+"'AND u_password = '"+j_password+"'";
+            String sql = "SELECT u_userT FROM `remit_sys` WHERE u_username = '"+j_username+"'AND u_password = '"+j_password+"'";
             ResultSet rs= connect.getData(sql);
             if(rs.next()){
                 name_f = rs.getString("u_fname");
@@ -106,7 +106,7 @@ public class login_form extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-bank-100.png"))); // NOI18N
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(20, 20, 100, 80);
+        jLabel4.setBounds(20, 20, 0, 80);
 
         j_login.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         j_login.setText("Login");

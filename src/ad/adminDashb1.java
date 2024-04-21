@@ -27,7 +27,7 @@ public class adminDashb1 extends javax.swing.JFrame {
         public void displayData(){
         try{
             dbConnector dbc = new dbConnector();
-            ResultSet rs = dbc.getData("SELECT * FROM `tbl_users`");
+            ResultSet rs = dbc.getData("SELECT * FROM `remit_sys`");
             userTable.setModel(DbUtils.resultSetToTableModel(rs));
              rs.close();
         }catch(SQLException ex){
